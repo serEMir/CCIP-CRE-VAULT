@@ -1,0 +1,24 @@
+# General
+.DS_Store
+*.log
+*.swp
+.env
+.env.*
+**/.env
+**/.env.*
+**/secrets.yaml
+
+# Node/Bun
+**/node_modules/
+**/dist/
+**/.bun/
+
+# Foundry / Solidity
+**/out/
+**/cache/
+contracts/broadcast/*/31337/
+contracts/broadcast/**/dry-run/
+
+# Coverage / reports
+**/coverage/
+**/lcov.info

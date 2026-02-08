@@ -1,0 +1,6 @@
+*.env
+secrets.yaml
+workflow/node_modules/
+workflow/dist/
+workflow/.cache/
+workflow/.cre/

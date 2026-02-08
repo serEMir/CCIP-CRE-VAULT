@@ -1,0 +1,23 @@
+{
+  "chains": [
+    {
+      "name": "sepolia",
+      "chainSelectorName": "ethereum-testnet-sepolia",
+      "vaultAddress": "0xEE7e93A4E9DB23f4C935A9215d1B4D37D68Aea1F",
+      "receiverAddress": "0xF48F3793F3c7d71483d519c1175f75F4e82396C5",
+      "routerAddress": "0x0BF3dE8c5D3e8A2B34D2BEeB17ABfCeBaf363A59",
+      "linkTokenAddress": "0x779877A7B0D9E8603169DdbD7836e478b4624789"
+    },
+    {
+      "name": "base-sepolia",
+      "chainSelectorName": "ethereum-testnet-sepolia-base-1",
+      "vaultAddress": "0x0131275eE526181280E6A9FC8b6B61042717cf8B",
+      "receiverAddress": "0x1cc8bB37C1F96f61EFCb7cfcc55F92D7a221922B",
+      "routerAddress": "0xD3b06cEbF099CE7DA4AcCf578aaebFDBd6e88a93",
+      "linkTokenAddress": "0xE4aB69C077896252FAFBD49EFD26B5D171A32410"
+    }
+  ],
+  "preflight": { "checkLink": true, "checkToken": true },
+  "extraArgsGasLimit": null,
+  "writeGasLimit": "2000000"
+}
