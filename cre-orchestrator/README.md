@@ -20,7 +20,13 @@ Run from the `cre-orchestrator` directory so the CLI can find `project.yaml`:
 cre workflow simulate ./workflow --target=staging-settings --broadcast
 ```
 
-When prompted, select the chain trigger and provide a tx hash + event index for the log you want to simulate.
+When prompted, select a chain trigger and provide a tx hash + 0-based event index for the vault log you want to replay.
+
+## Workflow behavior
+- Triggers on `DepositRequested`, `WithdrawRequested`, and `WithdrawExecutionRequested` logs.
+- Builds the CCIP message offchain and calls `executeCCIPSend` on the source vault via CRE.
+- Preflight checks for LINK balance and (where applicable) token balances before sending.
+- Uses `writeGasLimit` from the config for CRE writes; `extraArgsGasLimit` controls CCIP receiver gas (or defaults to 200k when `null`).
 
 ## Deploy (Early Access)
 Deployment requires CRE Early Access and mainnet registry setup. If enabled:

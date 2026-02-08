@@ -11,7 +11,7 @@ This package contains the Solidity contracts and Foundry tooling for the CCIP + 
 - RPC URLs for Sepolia and Base Sepolia
 
 ## Setup
-1. Install submodules:
+1. Install submodules (run from repo root):
    - `git submodule update --init --recursive`
 2. Create `contracts/.env` with RPC URLs and keys:
    - `SEPOLIA_RPC_URL=...`
@@ -36,10 +36,15 @@ forge script script/DeployVaultSystem.s.sol \
 ```
 
 After deploy, ensure:
-- `setCREForwarder(...)` is set to the Keystone forwarder.
+- `setCREForwarder(...)` is set to the Keystone forwarder address.
 - `allowlistSourceChain(...)` and `allowlistSender(...)` are set on receivers.
-- Vault has LINK for CCIP fees.
+- Vault has enough LINK for CCIP fees.
 
 ## Common operational steps
-- Fund vault with LINK for fees.
-- Approve token transfers to the vault before `requestDeposit`.
+- User must approve the vault to spend the deposit token before calling `requestDeposit`.
+- The vault will approve the CCIP router for LINK fees and token transfers when sending.
+- Fund the vault with LINK to pay CCIP fees.
+
+## Notes
+- `UnifiedVault.onReport(bytes,bytes)` is the CRE entrypoint and is restricted to the owner or the configured forwarder.
+- Receivers enforce allowlists for source chains and senders; configure them before sending messages.

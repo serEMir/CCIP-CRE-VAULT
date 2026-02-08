@@ -12,8 +12,8 @@ Cross-chain vault system that uses Chainlink CCIP for token movement and Chainli
 - CRE CLI (`cre`)
 
 **Quick start**
-1. Clone with submodules (contracts dependencies):
-   - `git submodule update --init --recursive` (run inside `contracts/`)
+1. Clone and init submodules:
+   - `git submodule update --init --recursive`
 2. Build contracts:
    - `cd contracts`
    - `forge build`
@@ -21,13 +21,18 @@ Cross-chain vault system that uses Chainlink CCIP for token movement and Chainli
    - `cd ../cre-orchestrator/workflow`
    - `bun install`
 4. Simulate CRE workflow:
-   - `cd ../`
+   - `cd ..`
    - `cre workflow simulate ./workflow --target=staging-settings --broadcast`
+   - Select a chain trigger and provide a tx hash + 0-based event index.
 
 **Configuration**
 - `contracts/.env` for RPCs and deploy credentials.
 - `cre-orchestrator/project.yaml` for CRE RPC settings.
 - `cre-orchestrator/workflow/config.*.json` for chain addresses and workflow settings.
+
+**Dependency policy (recommended)**
+- Keep `forge-std`, `openzeppelin-contracts`, and `chainlink-ccip` as submodules under `contracts/lib`.
+- Do not modify submodule code directly. If a change is required, fork the dependency and update the submodule URL.
 
 **Security**
 - Do not commit `.env` files or `secrets.yaml`.

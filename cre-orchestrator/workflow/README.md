@@ -11,6 +11,12 @@ bun install
 - RPCs: `../project.yaml`
 - Chain + address config: `./config.staging.json` or `./config.production.json`
 
+Config keys of interest:
+- `chains[]`: per-chain vault/receiver/router/LINK config
+- `preflight`: whether to check LINK + token balances before sending
+- `extraArgsGasLimit`: CCIP receiver gas limit (null = CCIP default)
+- `writeGasLimit`: gas limit for CRE `writeReport` calls
+
 ## Simulate
 Run from `cre-orchestrator/` so the CLI can find `project.yaml`:
 
@@ -18,4 +24,9 @@ Run from `cre-orchestrator/` so the CLI can find `project.yaml`:
 cre workflow simulate ./workflow --target=staging-settings --broadcast
 ```
 
-You will be prompted to select a chain trigger and provide a tx hash + event index for the log you want to replay.
+You will be prompted to select a chain trigger and provide a tx hash + 0-based event index for the log you want to replay.
+
+## Events handled
+- `DepositRequested`
+- `WithdrawRequested`
+- `WithdrawExecutionRequested`
